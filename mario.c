@@ -17,17 +17,21 @@ int main(void)
         {
             printf(" ");
         }
-        //Print the hashs
+        //Print the hashs from the left
         for (int j = 0; j < 1 * i ; j++)
         {    
             printf("#");
         }
-            printf("  ");
+        //Print the spaces between left and right side
+        printf("  ");
         {
-              for (int j = 0; j < 1 * i ; j++)
-            printf("#");
+            //Print the hashs from the right
+            for (int j = 0; j < 1 * i ; j++)
+            {
+                printf("#");
+            } 
             printf("\n");
-        
+            
         }
     }        
 }
