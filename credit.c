@@ -67,16 +67,16 @@ int main(void)
     //check out if its a valid Master Mard
     else if (5099999999999999 < number && 5600000000000000 > number)
     {
-        printf("MASTER CARD\n");
+        printf("MASTERCARD\n");
     }    
     //checkout if its a valid American Express
     else if (339999999999999 < number && 350000000000000 > number)
     {
-        printf("AMERICAN EXPRESS\n");
+        printf("AMEX\n");
     }
      else if (369999999999999 < number && 380000000000000 > number)
     {
-        printf("AMERICAN EXPRESS\n");
+        printf("AMEX\n");
     }
     else 
     {
