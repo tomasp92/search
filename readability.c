@@ -30,15 +30,15 @@ int main(void)
 
     if (colemanliaau < 1)
     {
-        printf("Before Grade 1 \n");
+        printf("Before Grade 1\n");
     }
     else if (colemanliaau > 16)
     {
-        printf("Grade 16+ \n");
+        printf("Grade 16+\n");
     }
     else
     {
-        printf("Grade %i \n", (int) round(colemanliaau));
+        printf("Grade %i\n", (int) round(colemanliaau));
     }
 
 
