@@ -20,10 +20,10 @@ int main(int argc, string argv [])
          //If its not print the following
          printf("Usage: ./caesar key\n");
       }
-      //If it is a number transforne the string into a int
+      //If it is a number transforme the string into a int
        else
        {
-          int k = atoi(key);
+                int k = atoi(key);
           
           //get a text to encipher
           string plaintext = get_string("plaintext: ");
@@ -31,6 +31,7 @@ int main(int argc, string argv [])
           //Encipher the text
           int a = 0;
           string ciphertext [a];
+          printf("ciphertext: ");
 
           while ( plaintext [a] != '\0' )
           {
