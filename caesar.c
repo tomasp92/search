@@ -19,12 +19,13 @@ int main(int argc, string argv [])
       {
          //If its not print the following
          printf("Usage: ./caesar key\n");
+         return 1;
       }
       //If it is a number transforme the string into a int
        else
        {
                 int k = atoi(key);
-          
+
           //get a text to encipher
           string plaintext = get_string("plaintext: ");
 
@@ -35,7 +36,7 @@ int main(int argc, string argv [])
 
           while ( plaintext [a] != '\0' )
           {
-             
+
           // check wether its a lower case and transform it
           if (isalpha(plaintext [a]) && islower(plaintext [a]))
           {
@@ -53,7 +54,7 @@ int main(int argc, string argv [])
       }
       a++;
    }
-   
+
    printf("\n");
 
        }
@@ -62,6 +63,7 @@ int main(int argc, string argv [])
    else
    {
       printf("Usage: ./caesar key\n");
+      return 1;
    }
 }
 
@@ -94,7 +96,7 @@ bool isargvanumber(string key)
     else
     {
         return false;
-    } 
+    }
 
 }
 
