@@ -14,6 +14,7 @@ int main(int argc, string argv [])
     if (argc !=2 || is_argv_correct_key(key) == false)
     {
        printf("Usage: ./substitution key(all of the letters in the alphabet in diferent order and without spaces in between\n");
+       return 1;
     }
     else
     {
