@@ -128,9 +128,9 @@ int main(int argc, string argv[])
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 {
- for (int a = 0; a < candidate_count; a++)
+    for (int a = 0; a < candidate_count; a++)
     {
-        if(strcmp(candidates [a].name, name) == 0)
+        if (strcmp(candidates [a].name, name) == 0)
         {
             preferences [voter][rank] = a;
             return true;
@@ -187,7 +187,7 @@ bool print_winner(void)
     // print the candidate that have the max number of votes and that has more than half the vote
     for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes == maxvote && maxvote > voter_count/2)
+        if (candidates[i].votes == maxvote && maxvote > voter_count / 2)
         {
             printf("%s\n", candidates [i].name);
             return true;
@@ -221,7 +221,7 @@ int find_min(void)
             sc_votes [i] = candidates[i].votes;
         }
     }
-        // check the max number of votes
+    // check the max number of votes
     int maxvote = 0;
     for (int a = 0; a < n; a++)
     {
@@ -278,7 +278,7 @@ bool is_tie(int min)
         }
     }
     // If c == n it means its a tie and we return true
-    if (c==n)
+    if (c == n)
     {
         return true;
     }
