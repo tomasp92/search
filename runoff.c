@@ -128,14 +128,11 @@ int main(int argc, string argv[])
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 {
-    int i = 0;
-    int j = 0;
-    for (int a = 0; a < candidate_count; a++)
+ for (int a = 0; a < candidate_count; a++)
     {
         if(strcmp(candidates [a].name, name) == 0)
         {
-            preferences [i][j] = a;
-            printf ("%i\n", preferences [i][j]); // sacaaaaaaaaar
+            preferences [voter][rank] = a;
             return true;
         }
 
@@ -147,62 +144,157 @@ bool vote(int voter, int rank, string name)
 // Tabulate votes for non-eliminated candidates
 void tabulate(void)
 {
+    // set counter for all the voters
     int i = 0;
-    int j = 0;
-    for (int i = 0; i < voter_count; i++)
+    for (i = 0; i < voter_count; i++)
     {
-        for (int c = 0; c < candidate_count ; c++)
+        int j = 0;
+        int c = -1;
+        // while we don´t find the candidate that in the preference [i] [j] was voted
+        while (preferences [i][j] != c)
         {
-            if (preferences [i][0] == c && !candidates[c].eliminated) 
+            c++;
+            // if we find it give him that vote, if it is not eliminated
+            if (preferences [i][j] == c && !candidates[c].eliminated)
             {
                 candidates[c].votes++;
             }
+            // if it is eliminated already sum one to preferences to se the next candidate in that voters list
+            else if (preferences [i][j] == c && candidates[c].eliminated)
+            {
+                j++;
+                c = -1;
+            }
         }
-        
-        else
-        {
-            for (int j = 0; j < candidate_count ; j++)
-        {
-              
-        {
-            preferences [i][j] = a;
-        }
-        
-            printf ("%i\n", preferences [i][j]);
-            return true;
-        }
-        }
-       
-
-
     }
-    return false;
 }
+
 
 // Print the winner of the election, if there is one
 bool print_winner(void)
 {
-    // TODO
+    // check the max number of votes
+    int maxvote = 0;
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes > maxvote)
+        {
+            maxvote = candidates[i].votes;
+        }
+
+    }
+
+    // print the candidate that have the max number of votes and that has more than half the vote
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes == maxvote && maxvote > voter_count/2)
+        {
+            printf("%s\n", candidates [i].name);
+            return true;
+        }
+
+    }
     return false;
+
+
 }
 
 // Return the minimum number of votes any remaining candidate has
+// Return the minimum number of votes any remaining candidate has
 int find_min(void)
 {
-    // TODO
-    return 0;
+    // check the number of people that are still in election
+    int n = 0;
+    for (int b = 0; b < candidate_count; b++)
+    {
+        if (!candidates[b].eliminated)
+        {
+            n++;
+        }
+    }
+    // check are they still in election and create an array with people that are in
+    int sc_votes [n];
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (!candidates[i].eliminated)
+        {
+            sc_votes [i] = candidates[i].votes;
+        }
+    }
+        // check the max number of votes
+    int maxvote = 0;
+    for (int a = 0; a < n; a++)
+    {
+        if (sc_votes[a] > maxvote)
+        {
+            maxvote = sc_votes [a];
+        }
+
+    }
+    // check the min number of votes
+    int minvote = maxvote;
+    for (int j = 0; j < n; j++)
+    {
+        if (sc_votes[j] < minvote)
+        {
+            minvote = sc_votes [j];
+        }
+
+    }
+    
+    //return the minimum amount of votes
+    return minvote;
 }
 
 // Return true if the election is tied between all candidates, false otherwise
 bool is_tie(int min)
 {
-    // TODO
+    // check the number of people that are still in election
+    int n = 0;
+    for (int b = 0; b < candidate_count; b++)
+    {
+        if (!candidates[b].eliminated)
+        {
+            n++;
+        }
+    }
+    // check are they still in election and create an array with people that are in
+    int sc_votes [n];
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (!candidates[i].eliminated)
+        {
+            sc_votes [i] = candidates[i].votes;
+        }
+    }
+    // Set variable c to count how manny candidates have the same amount of votes
+    int c = 0;
+    // check out wich of remaining candidates has min votes
+    for (int a = 0; a < n; a++)
+    {
+        if (sc_votes[a] == min)
+        {
+            c++;
+        }
+    }
+    // If c == n it means its a tie and we return true
+    if (c==n)
+    {
+        return true;
+    }
     return false;
 }
 
 // Eliminate the candidate (or candidiates) in last place
 void eliminate(int min)
 {
-    // TODO
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (min == candidates[i].votes)
+        {
+            candidates[i].eliminated = true;
+        }
+    }
+    
     return;
 }
