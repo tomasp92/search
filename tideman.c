@@ -207,7 +207,7 @@ void lock_pairs(void)
 void print_winner(void)
 {
 
-    
+    int champeon = 0;
     for (int i = 0; i < pair_count; i++)
     {
         int trues = 0;
@@ -221,8 +221,9 @@ void print_winner(void)
 
     if(trues == 0)
     {
-        printf("%s \n", candidates [i]);
+        champeon = pairs [i].winner;
     }
     }
+    printf("%s \n", candidates [champeon]);
 }
 
