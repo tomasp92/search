@@ -225,9 +225,10 @@ void print_winner(void)
         if(trues == 0)
         {
             champeon = i;
+            printf("%s\n", candidates [champeon]);
         }
     
-        printf("%s\n", candidates [champeon]);
+        
     }
     
     return;
