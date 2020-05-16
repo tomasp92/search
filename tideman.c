@@ -209,7 +209,12 @@ void lock_pairs(void)
 // Print the winner of the election
 void print_winner(void)
 {
-    int champeon = 0;
+    
+    bool champeon [candidate_count];
+    for (int i = 0; i < candidate_count; i++)
+    {
+        champeon [i] = false;
+    }
     for (int i = 0; i < pair_count; i++)
     {
         int trues = 0;
@@ -224,11 +229,18 @@ void print_winner(void)
 
         if(trues == 0)
         {
-            champeon = i;
+            champeon [i] = true;
         }
 
     }
-    printf("%s\n", candidates [champeon]);
+    
+     for (int i = 0; i < candidate_count; i++)
+    {
+        if (champeon [i] == true)
+        {
+            printf("%s\n", candidates [i]);
+        }
+    }
     return;
 }
 
