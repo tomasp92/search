@@ -227,8 +227,7 @@ void print_winner(void)
             champeon = i;
             printf("%s\n", candidates [champeon]);
         }
-    
-        
+
     }
     
     return;
