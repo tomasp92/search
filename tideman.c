@@ -238,7 +238,8 @@ void print_winner(void)
     {
         if (champeon [i] == true)
         {
-            printf("%s\n", candidates [i]);
+            printf("%s", candidates [i]);
+            printf("\n");
         }
     }
     return;
