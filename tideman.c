@@ -210,10 +210,8 @@ void lock_pairs(void)
 void print_winner(void)
 {
     int champeon = 0;
-    
     for (int i = 0; i < pair_count; i++)
     {
-        
         int trues = 0;
         int j;
         for (j = 0; j < pair_count; j++)
@@ -228,7 +226,8 @@ void print_winner(void)
     {
         champeon = i;
     }
-    }
     printf("%s \n", candidates [champeon]);
+    }
+    return;
 }
 
