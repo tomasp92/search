@@ -10,7 +10,7 @@ int preferences[MAX][MAX];
 
 // locked[i][j] means i is locked in over j
 bool locked[MAX][MAX];
-
+bool l[MAX][MAX];
 // Each pair has a winner, loser
 typedef struct
 {
@@ -95,7 +95,8 @@ int main(int argc, string argv[])
 
 
 
-   
+
+
     return 0;
 }
 
@@ -183,22 +184,24 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        if(locked [pairs [i].loser] [pairs [i].winner] ==false)
+        if (l[pairs [i].loser] [pairs [i].winner] != true)
         {
             locked [pairs [i].winner] [pairs [i].loser] = true;
-            for (int j = 0; j < pair_count; j++)
+            l[pairs [i].winner] [pairs [i].loser] = true;
+            
+             for (int j = i-1; j >= 0; j--)
             {
-                if(locked [j][pairs [i].winner] == true)
+                if (l[pairs [j].winner] [pairs [i].winner] == true)
                 {
-                    locked [j][pairs[i].loser] = true;
+                    l[pairs [j].winner][pairs [i].loser] = true;
                 }
-                else if(locked [pairs [i].loser][j] == true)
+                if (l [pairs [i].loser] [pairs [j].loser] == true)
                 {
-                    locked [pairs[i].winner][j] = true;
+                    l [pairs [i].winner][pairs [j].loser] = true;
                 }
             }
-
         }
+       
     }
     return;
 }
@@ -211,7 +214,8 @@ void print_winner(void)
     for (int i = 0; i < pair_count; i++)
     {
         int trues = 0;
-        for (int j = 0; j < pair_count; j++)
+        int j;
+        for (j = 0; j < pair_count; j++)
         {
             if( locked [j][i])
             {
@@ -221,7 +225,7 @@ void print_winner(void)
 
     if(trues == 0)
     {
-        champeon = pairs [i].winner;
+        champeon = i;
     }
     }
     printf("%s \n", candidates [champeon]);
