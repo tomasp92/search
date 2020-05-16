@@ -19,36 +19,46 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE copyimage [height][width];
+    
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            copyimage [i][j] = image [i][j];
+            
+        }
+    }
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
             
-            if(round (image [i][j].rgbtRed * 0.393 + image [i][j].rgbtGreen * 0.769 + image [i][j].rgbtBlue * 0.189) > 254)
+            if(round (copyimage [i][j].rgbtRed * 0.393 + copyimage [i][j].rgbtGreen * 0.769 + copyimage [i][j].rgbtBlue * 0.189) > 254)
             {
                 image [i][j].rgbtRed = 255;
             }
             else
             {
-                image [i][j].rgbtRed = round (image [i][j].rgbtRed * 0.393 + image [i][j].rgbtGreen * 0.769 + image [i][j].rgbtBlue * 0.189);
+                image [i][j].rgbtRed = round (copyimage [i][j].rgbtRed * 0.393 + copyimage [i][j].rgbtGreen * 0.769 + copyimage [i][j].rgbtBlue * 0.189);
             }
             
-            if(round (image [i][j].rgbtRed * 0.349 + image [i][j].rgbtGreen * 0.686 + image [i][j].rgbtBlue * 0.168) > 254)
+            if(round (copyimage [i][j].rgbtRed * 0.349 + copyimage [i][j].rgbtGreen * 0.686 + copyimage [i][j].rgbtBlue * 0.168) > 254)
             {
                 image [i][j].rgbtGreen =  255;
             }
             else
             {
-                image [i][j].rgbtGreen =  round (image [i][j].rgbtRed * 0.349 + image [i][j].rgbtGreen * 0.686 + image [i][j].rgbtBlue * 0.168);
+                image [i][j].rgbtGreen =  round (copyimage [i][j].rgbtRed * 0.349 + copyimage [i][j].rgbtGreen * 0.686 + copyimage [i][j].rgbtBlue * 0.168);
             }
             
-             if(round (image [i][j].rgbtRed * 0.272 + image [i][j].rgbtGreen * 0.534 + image [i][j].rgbtBlue * 0.131) > 254)
+             if(round (copyimage [i][j].rgbtRed * 0.272 + copyimage [i][j].rgbtGreen * 0.534 + copyimage [i][j].rgbtBlue * 0.131) > 254)
             {
                 image [i][j].rgbtGreen =  255;
             }
             else
             {
-                 image [i][j].rgbtBlue =  round (image [i][j].rgbtRed * 0.272 + image [i][j].rgbtGreen * 0.534 + image [i][j].rgbtBlue * 0.131);
+                 image [i][j].rgbtBlue =  round (copyimage [i][j].rgbtRed * 0.272 + copyimage [i][j].rgbtGreen * 0.534 + copyimage [i][j].rgbtBlue * 0.131);
             }
             
            
