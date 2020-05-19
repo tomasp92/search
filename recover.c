@@ -94,7 +94,7 @@ bool check_JPG_header(void)
     return false;
 }
 
-void create_new_JPG_file (void)
+void create_new_JPG_file(void)
 {
     char *filename = malloc(sizeof(int) * 3);
     sprintf(filename, "%03i.jpg", JPG_count - 1);
