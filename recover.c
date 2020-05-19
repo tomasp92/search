@@ -62,7 +62,7 @@ bool read_file (FILE *file)
             if (JPG_count == 1)
             {
                 char *filename = malloc(sizeof(int)*3);
-                sprintf (filename,"%03i.jpg", JPG_count);
+                sprintf (filename,"%03i.jpg", JPG_count-1);
                 FILE *img = fopen(filename,"w");
                 
                 if (img == NULL)
@@ -84,7 +84,7 @@ bool read_file (FILE *file)
                 
                 // Open new file
                 char *filename = malloc(sizeof(int)*3);
-                sprintf (filename,"%03i.jpg", JPG_count);
+                sprintf (filename,"%03i.jpg", JPG_count-1);
                 FILE *img = fopen(filename,"w");
                 
                 if (img == NULL)
@@ -105,7 +105,7 @@ bool read_file (FILE *file)
         else if(JPG_count > 0)
         {
             char *filename = malloc(sizeof(int)*3);
-            sprintf (filename,"%03i.jpg", JPG_count);
+            sprintf (filename,"%03i.jpg", JPG_count-1);
             FILE *img = fopen(filename,"a");
             free(filename);
             fwrite(chunks, sizeof(BYTE),512, img);
