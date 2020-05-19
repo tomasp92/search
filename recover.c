@@ -14,6 +14,7 @@ int JPG_count;
 bool read_file (FILE *file);
 bool check_JPG_header (void);
 void create_new_JPG_file (void);
+void apend_to_existing_JPG_file (void);
 
 
 int main(int argc, char *argv[])
@@ -61,42 +62,13 @@ bool read_file (FILE *file)
             // If its the first .JPG start writting the file
             if (JPG_count == 1)
             {
-                char *filename = malloc(sizeof(int)*3);
-                sprintf (filename,"%03i.jpg", JPG_count-1);
-                FILE *img = fopen(filename,"w");
-                
-                if (img == NULL)
-                {
-                    printf("Could not open. File not found\n");
-        
-                }
-                
-                fwrite(chunks, sizeof(BYTE),512, img);
-                fclose(img);
-                free(filename);
+                create_new_JPG_file ();
             }
             // If not first JPG
             else
             {
-                // Close the file that we were writting to
-                
-                printf("\n%i",JPG_count);
-                
-                // Open new file
-                char *filename = malloc(sizeof(int)*3);
-                sprintf (filename,"%03i.jpg", JPG_count-1);
-                FILE *img = fopen(filename,"w");
-                
-                if (img == NULL)
-                {
-                    printf("Could not open. File not found\n");
-        
-                }
-                fwrite(chunks, sizeof(BYTE),512, img);
-                fclose(img);
-                free(filename);
-                
-                
+                // Close the file that we were writting to and open new file
+               create_new_JPG_file ();
             }
 
         }
@@ -104,23 +76,11 @@ bool read_file (FILE *file)
         // If i was writting to a file already keep writting
         else if(JPG_count > 0)
         {
-            char *filename = malloc(sizeof(int)*3);
-            sprintf (filename,"%03i.jpg", JPG_count-1);
-            FILE *img = fopen(filename,"a");
-            free(filename);
-            fwrite(chunks, sizeof(BYTE),512, img);
-            fclose(img);
-            
-            
+            apend_to_existing_JPG_file ();
+        }
 
-        }
-        else
-        {
-            printf(".");
-        }
     return true;
     }
-    printf("false\n");
     return false;
 }
 
@@ -136,6 +96,28 @@ bool check_JPG_header (void)
 
 void create_new_JPG_file (void)
 {
-    
+                char *filename = malloc(sizeof(int)*3);
+                sprintf (filename,"%03i.jpg", JPG_count-1);
+                FILE *img = fopen(filename,"w");
+                
+                if (img == NULL)
+                {
+                    printf("Could not open. File not found\n");
+        
+                }
+                
+                fwrite(chunks, sizeof(BYTE),512, img);
+                fclose(img);
+                free(filename);
     return;
+}
+
+void apend_to_existing_JPG_file (void)
+{
+    char *filename = malloc(sizeof(int)*3);
+    sprintf (filename,"%03i.jpg", JPG_count-1);
+    FILE *img = fopen(filename,"a");
+    free(filename);
+    fwrite(chunks, sizeof(BYTE),512, img);
+    fclose(img);
 }
