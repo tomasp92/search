@@ -38,8 +38,11 @@ bool check(const char *word)
         {
             return true;
         }
-        cursor = cursor -> next;
-    }
+        else
+        {
+            cursor = cursor -> next;
+        }
+    }    
     return false;
 }
 
@@ -112,7 +115,7 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-    return words_num +1;
+    return words_num;
     printf("!!!NUMBER WORDS DICT: %i",words_num);
 }
 
