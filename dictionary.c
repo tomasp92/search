@@ -31,10 +31,10 @@ node *table[N];
 bool check(const char *word)
 {
     int s = hash(word);
-    node *cursor = table [s] -> next;
+    node *cursor = table [s];
     while (cursor != NULL)
     {
-        if (strcasecmp (cursor -> word, word)==0)
+        if (strcasecmp (word, cursor ->word)==0)
         {
             return true;
         }
