@@ -112,7 +112,7 @@ bool load(const char *dictionary)
 unsigned int size(void)
 {
     // TODO
-    return words_num;
+    return words_num +1;
     printf("!!!NUMBER WORDS DICT: %i",words_num);
 }
 
