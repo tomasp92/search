@@ -18,11 +18,18 @@ def main():
     students = db.execute("SELECT students.first, students.middle, students.last, students.birth FROM students WHERE house = ? ORDER BY students.last, students.first;", selected_house)
     
     for lines in students:
+        n = 0
         for a, b in lines.items():
             
             if b is None:
+                n += 1
                 continue
-            print (f"{b}", end=" ") 
+            if n == 3:
+                print (", born", end=" ")
+            print (f"{b}", end="")
+            if n != 2:
+                print(" ", end="")
+            n += 1    
         print()
    
 main()
