@@ -27,7 +27,7 @@ def main():
             if n == 3:
                 print (", born", end=" ")
             print (f"{b}", end="")
-            if n != 2:
+            if n < 2:
                 print(" ", end="")
             n += 1    
         print()
