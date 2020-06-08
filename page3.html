@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title> Encrpited Messeges</title>
+    </head>
+    <body class = body1>
+        <h1>
+            Encripta tus mensajes
+        </h1>
+         <nav>
+                <ul>
+                    <li>
+                        <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/index.html">
+                        Pagina Principal
+                        </a>
+                    </li>
+                     <li>
+                        <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/page2.html">
+                        Videos
+                        </a>
+                    </li>
+                     <li>
+                         <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/page3.html">
+                        Encripta tus propios mensajes
+                        </a>
+                    </li>
+                     <li>
+                         <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/page4.html">
+                        Decodifica mensajes
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        <h3>
+            En esta pagina podrás encriptar tus propios mensajes para que solo los comprenda aquella persona a quién tu le des la clave. Para eso comienza por clickear todas las letras con el objetivo de generar tu clave.
+            La primera letra a la cual le des click reemplazará a todas las "a" de tu mensaje, la segunda letra a las "b" y de esta forma se continua hasta la "z".
+            Una vez generada tu clave podrás escribir tu mensaje debajo, y al apretar encriptar, tendrás como resultado tu mensaje cifrado.
+        </h3>
+        <br><br><br>
+        <div id = "monitor">
+            <br><br>
+        </div>
+        <br><br>
+        <div class= "btngroup">
+            <p class= "btn">
+                <button id= "Q">Q</button>
+                <button id= "W">W</button>
+                <button id= "E">E</button>
+                <button id= "R">R</button>
+                <button id= "T">T</button>
+                <button id= "Y">Y</button>
+                <button id= "U">U</button>
+                <button id= "I">I</button>
+                <button id= "O">O</button>
+                <button id= "P">P</button>
+            </p>
+            <br>
+            <p class= "btn">
+                <button id= "A">A</button>
+                <button id= "S">S</button>
+                <button id= "D">D</button>
+                <button id= "F">F</button>
+                <button id= "G">G</button>
+                <button id= "H">H</button>
+                <button id= "J">J</button>
+                <button id= "K">K</button>
+                <button id= "L">L</button>
+            </p>
+            <br>
+            <p class= "btn">
+                <button id= "Z">Z</button>
+                <button id= "X">X</button>
+                <button id= "C">C</button>
+                <button id= "V">V</button>
+                <button id= "B">B</button>
+                <button id= "N">N</button>
+                <button id= "M">M</button>
+            </p>
+            <br><br>
+        </div>
+         <div>
+            <form>
+                <input id = "textoaencriptar" type = "textarea"  placeholder = "Escribe aquí el texto a encriptar"> </textarea>
+            </form>
+            <div>
+                <p id = "textoencriptado">
+                </p>
+            <br>
+            </div>
+            <button id ="encriptartexto" onclick="getData()"> Encriptar texto </button>
+        </div>
+         <script>
+
+            let n = 0;
+
+            let buttons = ['#A', '#B', '#C', '#D', '#E', '#F', '#G', '#H', '#I', '#J', '#K', '#L', '#M', '#N', '#O', '#P', '#Q', '#R', '#S', '#T', '#U', '#V', '#W', '#X', '#Y','#Z']
+            let key = new Array ();
+
+                for (let i = 0; i < buttons.length; i++)
+                {
+                    document.querySelector(buttons[i]).onclick=function(){
+                        document.querySelector(buttons[i]).style.visibility = 'hidden'
+                        key [n] = String.fromCharCode(i + 65);
+                        document.getElementById('monitor').innerHTML = document.getElementById('monitor').innerHTML + key [n];
+                         n++;
+
+                    }
+
+                }
+
+
+        // Check out how long the plain text is
+
+        let getData = function(){
+            let = textoaencriptar = document.getElementById('textoaencriptar').value;
+
+            document.getElementById('textoencriptado').innerHTML = "Texto cifrado: ";
+
+            // Print the ciphertext
+            for (let p = 0; p < textoaencriptar.length ; p++)
+            {
+                console.log (textoaencriptar[p]);
+                //print the upper case letters modified
+                if (textoaencriptar.charCodeAt(p) >= 65 && textoaencriptar.charCodeAt(p) <= 90)
+                {
+                    let k = textoaencriptar.charCodeAt(p) - 65;
+                    document.getElementById('textoencriptado').innerHTML = document.getElementById('textoencriptado').innerHTML + key [k];
+                }
+                //print the lower case letters modified
+                else if (textoaencriptar.charCodeAt(p) >= 97 && textoaencriptar.charCodeAt(p) <= 122)
+                {
+                    let k = textoaencriptar.charCodeAt(p) - 97;
+                    document.getElementById('textoencriptado').innerHTML = document.getElementById('textoencriptado').innerHTML + key[k].toLowerCase();
+                }
+                //print other type of characters
+                else
+                {
+                    document.getElementById('textoencriptado').innerHTML = document.getElementById('textoencriptado').innerHTML + textoaencriptar[p];
+                }
+            }
+            document.getElementById('textoencriptado').innerHTML = document.getElementById('textoencriptado').innerHTML + "<br>" + "Clave: " + key.join('');
+
+        }
+        </script>
+    </body>
+</html>
