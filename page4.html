@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lng="en">
+    <hed>
+        <link href="https://stckpth.bootstrpcdn.com/bootstrp/4.1.3/css/bootstrp.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title> Encrpited Messeges</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </hed>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>En el recuadro azul escribe la clave y en el recuadro de debajo a la izquierda el mensaje que te enviaron!</strong> Luego presiona decodificar texto para saber que dice tu mensaje.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+
+     <body class = body1>
+          <h1>
+            Lee mensajes encriptados
+        </h1>
+        <h3>
+            En esta pagina, pasando la clave de 26 letras y el texto encriptado que recibiste podrás leer el mensaje
+        </h3>
+        <nav>
+            <ul>
+                <li>
+                    <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/index.html">
+                        Pagina Principal
+                    </a>
+                </li>
+                 <li>
+                    <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/page2.html">
+                        Videos
+                    </a>
+                </li>
+                 <li>
+                     <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/page3.html">
+                        Encripta tus propios mensajes
+                    </a>
+                </li>
+                 <li>
+                     <a href = "https://19d067dc-e526-4485-9c3c-72023b383576-ide.cs50.xyz:8080/page4.html">
+                        Decodifica mensajes
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+              <form>
+                <input id = "clave" type = "text"  placeholder = "Escribe aquí la clave recibida en mayusculas" maxlenght="26"> </textarea>
+            </form>
+            <form>
+                <input id = "textoaencriptar" type = "textarea"  placeholder = "Escribe aquí el texto a decodificar"> </textarea>
+            </form>
+            <div>
+                <p id = "textoencriptado">
+                </p>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            </div>
+            <button id ="decodificartexto" onclick="getData()"> Decodificar texto </button>
+        </div>
+
+        <script>
+            let getData = function(){
+            let = textoaencriptar = document.getElementById('textoaencriptar').value;
+
+            let = key = document.getElementById('clave').value;
+
+            // Print the ciphertext
+            for (let p = 0; p < textoaencriptar.length ; p++)
+            {
+                //print the upper case letters modified
+                if (textoaencriptar.charCodeAt(p) >= 65 && textoaencriptar.charCodeAt(p) <= 90)
+                {
+                    for(let m = 0; m < key.length; m++)
+                    {
+                        if(textoaencriptar[p] === key[m])
+                        {
+                            document.getElementById('textoencriptado').innerHTML = document.getElementById('textoencriptado').innerHTML + String.fromCharCode(m + 65);
+                        }
+                    }
+                }
+                //print the lower case letters modified
+                else if (textoaencriptar.charCodeAt(p) >= 97 && textoaencriptar.charCodeAt(p) <= 122)
+                {
+                     for(let m = 0; m < key.length; m++)
+                    {
+                        if(textoaencriptar[p].toUpperCase() === key[m])
+                        {
+                            document.getElementById('textoencriptado').innerHTML = document.getElementById('textoencriptado').innerHTML + String.fromCharCode(m + 97);
+                        }
+                    }
+                }
+                //print other type of characters
+                else
+                {
+                    document.getElementById('textoencriptado').innerHTML = document.getElementById('textoencriptado').innerHTML + textoaencriptar[p];
+                }
+            }
+
+
+        }
+         </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
+        </body>
+</html>
