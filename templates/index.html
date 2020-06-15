@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class= "table table-striped">
+        <thead>
+            <th>
+                Symbol
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Shares
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Total
+            </th>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+                <tr>
+                    <td> {{ row["symbol"] }} </td>
+                    <td> {{ row["company_name"] }} </td>
+                    <td> {{ row["shares"]}} </td>
+                    <td> ${{ "{0:.2f}".format(row["price"]) }} </td>
+                    <td> ${{ "{0:.2f}".format(row["total"]) }} </td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td colspan="4">CASH</td>
+                    <td>
+                    ${{ "{0:.2f}".format(cash[0]["cash"]) }}
+                    </td>
+                </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>
+                    ${{ "{0:.2f}".format(sumtot) }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
